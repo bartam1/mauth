@@ -15,6 +15,7 @@ type AppConfig struct {
 	LOCAL_ENV             string        `mapstructure:"LOCAL_ENV"`
 	LOG_LEVEL             int           `mapstructure:"LOG_LEVEL"`
 	DATABASE_PSQL_URL     string        `mapstructure:"DATABASE_PSQL_URL"`
+	TOKEN_TYPE            string        `mapstructure:"TOKEN_TYPE"`
 	TOKEN_SYMMETRIC_KEY   string        `mapstructure:"TOKEN_SYMMETRIC_KEY"`
 	ACCESS_TOKEN_DURATION time.Duration `mapstructure:"ACCESS_TOKEN_DURATION"`
 }
