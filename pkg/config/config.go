@@ -34,6 +34,6 @@ func LoadConfig(path string) (config AppConfig, err error) {
 	}
 }
 
-func Init() {
+func init() {
 	Global, _ = LoadConfig("../../")
 }
