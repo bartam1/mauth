@@ -10,7 +10,7 @@ type Memory struct {
 	db map[string]string
 }
 
-func New() (Memory, error) {
+func NewMem() (Memory, error) {
 	return Memory{db: map[string]string{}}, nil
 }
 
