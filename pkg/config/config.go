@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var GConfig AppConfig
+var Global AppConfig
 
 type AppConfig struct {
 	SRV_HOST          string `mapstructure:"SRV_HOST"`
@@ -31,5 +31,5 @@ func LoadConfig(path string) (config AppConfig, err error) {
 }
 
 func Init() {
-	GConfig, _ = LoadConfig("../../")
+	Global, _ = LoadConfig("../../")
 }
