@@ -1,9 +1,9 @@
 package logs
 
 import (
-	"os"
 	"strconv"
 
+	"github.com/bartam1/mauth/pkg/config"
 	"github.com/sirupsen/logrus"
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"
 )
@@ -17,11 +17,11 @@ func Init() {
 		},
 	})
 
-	if isLocalEnv, _ := strconv.ParseBool(os.Getenv("LOCAL_ENV")); isLocalEnv {
+	if isLocalEnv, _ := strconv.ParseBool(config.Global.LOCAL_ENV); isLocalEnv {
 		logrus.SetFormatter(&prefixed.TextFormatter{
 			ForceFormatting: true,
 		})
 	}
-	level, _ := strconv.Atoi(os.Getenv("LOG_LEVEL"))
+	level, _ := strconv.Atoi(config.Global.LOG_LEVEL)
 	logrus.SetLevel(logrus.Level(level))
 }
