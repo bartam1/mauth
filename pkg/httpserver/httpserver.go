@@ -8,10 +8,9 @@ import (
 	"syscall"
 	"time"
 
-	"local.com/accsrv/pkg/logs/httplog"
-
-	"github.com/go-chi/chi"
+	log "github.com/bartam1/mauth/pkg/logs"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/chi/v5"
 	"github.com/sirupsen/logrus"
 )
 
@@ -40,7 +39,7 @@ func NewOnAddr(addr string, createHandler func(router chi.Router) http.Handler) 
 func setMiddlewares(router *chi.Mux) {
 	router.Use(middleware.RequestID)
 	router.Use(middleware.RealIP)
-	router.Use(httplog.NewStructuredLogger(logrus.StandardLogger()))
+	router.Use(log.NewStructuredLogger(logrus.StandardLogger()))
 	router.Use(middleware.Recoverer)
 	router.Use(
 		middleware.SetHeader("X-Content-Type-Options", "nosniff"),
