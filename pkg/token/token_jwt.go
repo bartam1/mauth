@@ -24,7 +24,7 @@ func NewJWT(secretKey string) (Token, error) {
 }
 
 // CreateToken creates a new token for a specific username and duration
-func (t *JWTToken) CreateToken(username string, scope string, duration time.Duration) (string, error) {
+func (t *JWTToken) CreateToken(username string, scope []string, duration time.Duration) (string, error) {
 	payload, err := NewPayload(username, scope, duration)
 	if err != nil {
 		return "", err

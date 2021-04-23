@@ -29,7 +29,7 @@ func NewPaseto(symmetricKey string) (Token, error) {
 }
 
 // CreateToken creates a new token for a specific username and duration
-func (p *PasetoToken) CreateToken(username string, scope string, duration time.Duration) (string, error) {
+func (p *PasetoToken) CreateToken(username string, scope []string, duration time.Duration) (string, error) {
 	payload, err := NewPayload(username, scope, duration)
 	if err != nil {
 		return "", err
