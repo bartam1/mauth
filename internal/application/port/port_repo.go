@@ -7,5 +7,5 @@ import (
 )
 
 type RepoIf interface {
-	UserAuth(ctx context.Context,domain.UserAuth) (err error)
+	UserAuth(ctx context.Context, ua domain.UserAuth) (err error)
 }
