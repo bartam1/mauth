@@ -22,6 +22,5 @@ func Init() {
 			ForceFormatting: true,
 		})
 	}
-	level, _ := strconv.Atoi(config.Global.LOG_LEVEL)
-	logrus.SetLevel(logrus.Level(level))
+	logrus.SetLevel(logrus.Level(config.Global.LOG_LEVEL))
 }
