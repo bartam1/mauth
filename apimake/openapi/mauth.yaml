@@ -1,0 +1,62 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: User auth
+  description: Token based user auth server
+  contact:
+    name: Marton Barta  
+    email: bbartam@gmail.com
+servers:
+  - url: https://{hostname}/api
+    variables:
+      hostname:
+        default: localhost 
+paths:
+  /login:
+    get:
+      summary: Generated login page with form
+      operationId: loginPage
+      responses:
+        '200':
+          description: TODO
+          content:
+            text/html:
+              schema:
+                type: string
+  /token/user:
+    post:
+      operationId: userAuth
+      requestBody:
+        description: Authorize the user via name, secret than return access token
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAuth'
+      responses:
+        '200':
+          description: Return the token
+components:
+  schemas:
+    UserAuth:
+      type: object
+      required:
+        - UserName
+        - UserSecret
+      properties:
+        UserName:
+          type: string 
+        UserSecret:
+          type: string
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: Error code
+        message:
+          type: string
+          description: Error message
