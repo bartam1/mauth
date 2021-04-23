@@ -11,6 +11,9 @@ type Entity struct {
 	db port.RepoIf
 }
 
+func New(db port.RepoIf) Entity {
+	return Entity{db}
+}
 func (e *Entity) UserAuth(ctx context.Context, ua domain.UserAuth) error {
 	return nil
 }
