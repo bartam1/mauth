@@ -18,6 +18,7 @@ type AppConfig struct {
 	TOKEN_TYPE            string        `mapstructure:"TOKEN_TYPE"`
 	TOKEN_SYMMETRIC_KEY   string        `mapstructure:"TOKEN_SYMMETRIC_KEY"`
 	ACCESS_TOKEN_DURATION time.Duration `mapstructure:"ACCESS_TOKEN_DURATION"`
+	PASS_SALT             string        `mapstructure:"ACCESS_TOKEN_DURATION"`
 }
 
 func LoadConfig(path string) (config AppConfig, err error) {
