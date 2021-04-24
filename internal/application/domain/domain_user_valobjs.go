@@ -8,16 +8,13 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-const (
-	UTypePerson = iota
-	UTypeService
-)
+type AuthStatus int
 
 type UserType struct {
 	id int
 }
 
-func (u *UserType) GetId() int {
+func (u *UserType) Get() int {
 	return u.id
 }
 
@@ -39,7 +36,7 @@ type UserName struct {
 	username string
 }
 
-func (u *UserName) GetUserName() string {
+func (u *UserName) Get() string {
 	return u.username
 }
 
@@ -59,7 +56,7 @@ type UserSecret struct {
 	usersecret string
 }
 
-func (u *UserSecret) GetUserSecret() string {
+func (u *UserSecret) Get() string {
 	return u.usersecret
 }
 func (u *UserSecret) CompareString(s string) bool {
@@ -82,17 +79,11 @@ func NewUserSecret(p string) (u *UserSecret, err error) {
 	return u, nil
 }
 
-const (
-	ScopeRead = iota
-	ScopeWrite
-	ScopeDelete
-)
-
 type Scope struct {
 	name string
 }
 
-func (u *Scope) GetScope() string {
+func (u *Scope) Get() string {
 	return u.name
 }
 
@@ -111,11 +102,31 @@ func NewScope(i int) (s *Scope, err error) {
 	return s, nil
 }
 
+type Scopes struct {
+	scopes []Scope
+}
+
+func (s *Scopes) GetStrArray() (as []string) {
+	as = make([]string, len(s.scopes))
+	for _, e := range s.scopes {
+		as = append(as, e.name)
+	}
+	return as
+}
+
+func NewScopes(s ...Scope) (sc *Scopes) {
+	sc = new(Scopes)
+	for _, e := range s {
+		sc.scopes = append(sc.scopes, e)
+	}
+	return sc
+}
+
 type FullName struct {
 	fullname string
 }
 
-func (u *FullName) GetFullName() string {
+func (u *FullName) Get() string {
 	return u.fullname
 }
 
