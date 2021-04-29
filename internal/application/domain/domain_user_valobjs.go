@@ -9,16 +9,17 @@ import (
 )
 
 type AuthStatus int
-
+type UType int
+type UScope int
 type UserType struct {
-	id int
+	id UType
 }
 
 func (u *UserType) Get() int {
 	return u.id
 }
 
-func NewUserType(t uint32) (u *UserType, err error) {
+func NewUserType(t UType) (u *UserType, err error) {
 	u = new(UserType)
 	switch t {
 	case UTypePerson:
@@ -87,14 +88,14 @@ func (u *Scope) Get() string {
 	return u.name
 }
 
-func NewScope(i int) (s *Scope, err error) {
+func NewScope(i UScope) (s *Scope, err error) {
 	s = new(Scope)
 	switch i {
-	case ScopeRead:
+	case UScopeRead:
 		s.name = "Read"
-	case ScopeWrite:
+	case UScopeWrite:
 		s.name = "Write"
-	case ScopeDelete:
+	case UScopeDelete:
 		s.name = "Delete"
 	default:
 		return nil, errors.New("There is no such scope! (Read,Write,Delete)")
@@ -103,7 +104,7 @@ func NewScope(i int) (s *Scope, err error) {
 }
 
 type Scopes struct {
-	scopes []Scope
+	scopes []*Scope
 }
 
 func (s *Scopes) GetStrArray() (as []string) {
@@ -114,7 +115,7 @@ func (s *Scopes) GetStrArray() (as []string) {
 	return as
 }
 
-func NewScopes(s ...Scope) (sc *Scopes) {
+func NewScopes(s ...*Scope) (sc *Scopes) {
 	sc = new(Scopes)
 	for _, e := range s {
 		sc.scopes = append(sc.scopes, e)
