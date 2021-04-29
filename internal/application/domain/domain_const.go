@@ -1,8 +1,9 @@
 package domain
 
 const (
-	AuthFailed = iota
-	AuthSuccess
+	AuthSuccess = iota
+	AuthWrongUser
+	AuthWrongSecret
 )
 
 const (
@@ -11,7 +12,7 @@ const (
 )
 
 const (
-	ScopeRead = iota
-	ScopeWrite
-	ScopeDelete
+	UScopeRead = iota
+	UScopeWrite
+	UScopeDelete
 )
